@@ -1,1 +1,20 @@
-Hello miss
+{
+  quotes: [
+    {
+      title: 'why',
+      quote: '...',
+      author: '...',
+      url: '...',
+      tags: ['...', '...'],
+      addedAt: 1664188841602.6626,
+    },
+    {
+      title: 'why',
+      quote: '...',
+      author: '...',
+      url: '...',
+      tags: ['...', '...'],
+      addedAt: 1664188841602.6626,
+    },
+  ],
+}
