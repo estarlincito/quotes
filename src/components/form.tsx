@@ -1,23 +1,21 @@
 import Base64 from '@/lib/base64';
-import { headers } from 'next/headers';
 
 const LoginForm = () => {
   const handleSubmit = async (formData: FormData) => {
     'use server';
     //auth
-
-    console.log(headers);
-
     const email = formData.get('email')!;
     const password = formData.get('password')!;
     const auth = new Base64(`${email}:${password}`).encoded;
 
     //sent auth
-    const res = await fetch('/api/auth', {
+    const res = await fetch('https://quotes001.vercel.app/api/auth', {
       cache: 'no-store',
       method: 'POST',
+      // mode: "cors",
+      // credentials: "include",
+      // credentials: "same-origin",
       headers: {
-        Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: 'Basic ' + auth,
       },
