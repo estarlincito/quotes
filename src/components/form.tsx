@@ -9,7 +9,7 @@ const LoginForm = () => {
     const auth = new Base64(`${email}:${password}`).encoded;
 
     //sent auth
-    const res = await fetch('/api/auth', {
+    const res = await fetch('https://quotes001.vercel.app/api/auth', {
       cache: 'no-store',
       method: 'POST',
       mode: 'cors',
