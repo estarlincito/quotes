@@ -8,6 +8,8 @@ const LoginForm = () => {
     const password = formData.get('password')!;
     const auth = new Base64(`${email}:${password}`).encoded;
 
+    console.log(auth);
+
     //sent auth
     const res = await fetch('https://quotes001.vercel.app/api/auth', {
       cache: 'no-store',

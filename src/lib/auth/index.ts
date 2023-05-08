@@ -5,11 +5,11 @@ import userDb from './user';
 
 class Res {
   static body(success: boolean, message: string) {
-    return JSON.stringify({ success, message });
+    return JSON.stringify({ success: success, message });
   }
 
-  static status(code: 200 | 400 | 401 | 500) {
-    return { status: code };
+  static status(status: 200 | 400 | 401 | 500) {
+    return { status };
   }
 }
 
@@ -19,7 +19,7 @@ const auth = async (req: Request) => {
 
   //if basic is undefine
   if (!auth) {
-    return new Response(body(true, 'you need authorization'), status(401));
+    return new Response(body(false, 'you need authorization'), status(400));
   }
 
   //destructure credentials
