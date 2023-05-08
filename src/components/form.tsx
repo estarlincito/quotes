@@ -1,16 +1,19 @@
 import Base64 from '@/lib/base64';
+import { headers } from 'next/headers';
 
 const LoginForm = () => {
   const handleSubmit = async (formData: FormData) => {
     'use server';
     //auth
 
+    console.log(headers);
+
     const email = formData.get('email')!;
     const password = formData.get('password')!;
     const auth = new Base64(`${email}:${password}`).encoded;
 
     //sent auth
-    const res = await fetch('http://localhost:3000/api/auth', {
+    const res = await fetch('/api/auth', {
       cache: 'no-store',
       method: 'POST',
       headers: {
@@ -21,7 +24,7 @@ const LoginForm = () => {
     });
 
     const body = (await res.json()) as { success: string; message: string };
-    console.log(body);
+
     ////create session
     // cookies().set({
     //   name: 'name',
