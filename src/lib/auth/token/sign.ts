@@ -2,8 +2,8 @@ import { SignJWT } from 'jose';
 import { nanoid } from 'nanoid';
 import getJwtSecretKey from './secret';
 
-const singToken = async () => {
-  const token = await new SignJWT({})
+const singToken = async (name: string, email: string) => {
+  const token = await new SignJWT({ name, email })
     .setProtectedHeader({ alg: 'HS256' })
     .setJti(nanoid())
     .setIssuedAt()
@@ -18,6 +18,7 @@ const singToken = async () => {
   //     path: '/',
   //     secure: !isDev,
   //   });
+  return token;
 };
 
 export default singToken;

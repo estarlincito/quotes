@@ -1,5 +1,7 @@
 import Base64 from '@/lib/base64';
 import { compare } from 'bcrypt';
+import { serialize } from 'cookie';
+import isDev from '../isDev';
 import singToken from './token/sign';
 import userDb from './user';
 
@@ -17,7 +19,7 @@ const auth = async (req: Request) => {
   const auth = req.headers.get('authorization');
   const { body, status } = Res;
 
-  //if basic is undefine
+  //if basic auth is undefine
   if (!auth) {
     return new Response(body(false, 'you need authorization'), status(400));
   }
@@ -35,8 +37,17 @@ const auth = async (req: Request) => {
 
   //email and password are correct
   if (email && password) {
-    await singToken();
-    return new Response(body(true, 'authenticated'), status(200));
+    const token = await singToken('Estarlincito', user.email);
+    return new Response(body(true, 'authenticated'), {
+      status: 200,
+      headers: {
+        'Set-Cookie': serialize('user-token', token, {
+          httpOnly: true,
+          path: '/',
+          secure: !isDev,
+        }),
+      },
+    });
   }
 
   if (!email) {
