@@ -1,5 +1,8 @@
 import { hash } from 'bcrypt';
 
-export const password = async (text: string, dig: number) => {
-  return await hash(text, dig);
+export const password = async (
+  myPlaintextPassword: string,
+  saltRounds: number
+) => {
+  return await hash(myPlaintextPassword, saltRounds);
 };
