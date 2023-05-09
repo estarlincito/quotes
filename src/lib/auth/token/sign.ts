@@ -10,14 +10,6 @@ const singToken = async (name: string, email: string) => {
     .setExpirationTime('50m')
     .sign(new TextEncoder().encode(getJwtSecretKey()));
 
-  //saved session on cookie
-  //   cookies().set({
-  //     name: 'user-token',
-  //     value: token,
-  //     httpOnly: true,
-  //     path: '/',
-  //     secure: !isDev,
-  //   });
   return token;
 };
 

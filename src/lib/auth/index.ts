@@ -1,13 +1,13 @@
 import Base64 from '@/lib/base64';
+import isDev from '@/lib/isDev';
 import { compare } from 'bcrypt';
 import { serialize } from 'cookie';
-import isDev from '../isDev';
 import singToken from './token/sign';
 import userDb from './user';
 
 class Res {
   static body(success: boolean, message: string) {
-    return JSON.stringify({ success: success, message });
+    return JSON.stringify({ success, message });
   }
 
   static status(status: 200 | 400 | 401 | 500) {
@@ -16,18 +16,18 @@ class Res {
 }
 
 const auth = async (req: Request) => {
-  const auth = req.headers.get('authorization');
+  const basic = req.headers.get('authorization');
   const { body, status } = Res;
 
-  //if basic auth is undefine
-  if (!auth) {
+  //if basic is undefine
+  if (!basic) {
     return new Response(body(false, 'you need authorization'), status(400));
   }
 
   //destructure credentials
   const credentials = (c: number) => {
-    const basic = new Base64(auth.replace('Basic ', '')).decoded;
-    return basic.split(':')[c];
+    const credential = new Base64(basic.replace('Basic ', '')).decoded;
+    return credential.split(':')[c];
   };
 
   //check if store user and current user is true
@@ -37,7 +37,8 @@ const auth = async (req: Request) => {
 
   //email and password are correct
   if (email && password) {
-    const token = await singToken('Estarlincito', user.email);
+    const token = await singToken('Admin', user.email);
+
     return new Response(body(true, 'authenticated'), {
       status: 200,
       headers: {
