@@ -10,7 +10,7 @@ const verifyToken = async (token: string) => {
 
     return verified.payload;
   } catch (error) {
-    throw new Error('Your token has expired');
+    return null;
   }
 };
 
