@@ -1,6 +1,7 @@
 import fetchUrl from '@/lib/auth/url';
 import Base64 from '@/lib/base64';
 import isDev from '@/lib/isDev';
+
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
@@ -58,7 +59,7 @@ const LoginForm = () => {
       path: '/',
     });
 
-    redirect('/new');
+    redirect('/quotes/new');
   };
 
   return (
