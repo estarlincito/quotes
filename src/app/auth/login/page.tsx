@@ -1,9 +1,10 @@
 import LoginForm from '@/components/form';
+import Title from '@UI/title';
 
 const Login = () => {
   return (
     <div>
-      <h1>Login</h1>
+      <Title text='Login' />
       <LoginForm />
     </div>
   );

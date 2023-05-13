@@ -1,6 +1,6 @@
 import { GetQuotes } from '@/types/quotes';
-import Base64 from './base64';
-import { octokit } from './octokit';
+import Base64 from '../base64';
+import { octokit } from '../octokit';
 
 const op = {
   owner: 'Estarlincito',

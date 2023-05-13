@@ -1,18 +1,21 @@
+import Footer from '@/components/footer';
+import MainContainer from '@/components/maincontainer';
+import clsx from 'clsx';
 import './globals.css';
 
-export const metadata = {
-  title: 'Quote',
-  description: 'My quotes list',
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <body
+        className={clsx(
+          'bg-white dark:bg-black',
+          'text-text-light-primary dark:text-text-dark-primary'
+        )}
+      >
+        <MainContainer>{children}</MainContainer>
+        <Footer />
+      </body>
     </html>
   );
-}
+};
+export default RootLayout;

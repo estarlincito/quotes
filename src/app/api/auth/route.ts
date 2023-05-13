@@ -1,9 +1,9 @@
 import auth from '@/lib/auth';
 
-export async function POST(req: Request) {
+export const POST = async (req: Request) => {
   return await auth(req);
-}
+};
 
-export async function GET() {
+export const GET = async () => {
   return new Response('auth token');
-}
+};

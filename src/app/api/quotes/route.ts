@@ -1,10 +1,10 @@
-import Quotes from '@/lib/queotes';
+import Quotes from '@/lib/quotes/queotes';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export const GET = async () => {
   return NextResponse.json(await Quotes.get());
-}
+};
 
-export async function PUT(req: Request) {
+export const PUT = async (req: Request) => {
   return NextResponse.json(await Quotes.put(req));
-}
+};
