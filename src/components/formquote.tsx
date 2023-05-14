@@ -53,7 +53,6 @@ const FormQuote: FC<FormQuoteProps> = ({}) => {
         className={css.input}
         name='title'
         type='text'
-        value='...'
         placeholder='Write quote title'
         required
       />
@@ -71,7 +70,6 @@ const FormQuote: FC<FormQuoteProps> = ({}) => {
         className={css.input}
         name='author'
         type='text'
-        value='...'
         placeholder='Write quote author'
         required
       />
@@ -81,7 +79,6 @@ const FormQuote: FC<FormQuoteProps> = ({}) => {
         className={css.input}
         name='url'
         type='text'
-        value='...'
         placeholder='Write quote url'
         required
       />
