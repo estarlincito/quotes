@@ -1,4 +1,4 @@
-import LoginForm from '@/components/form';
+import LoginForm from '@/components/Loginform';
 import Title from '@UI/title';
 
 const Login = () => {

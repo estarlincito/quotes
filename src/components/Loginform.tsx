@@ -1,4 +1,4 @@
-import fetchUrl from '@/lib/auth/url';
+import ApiUrl from '@/constants/url';
 import Base64 from '@/lib/base64';
 import isDev from '@/lib/isDev';
 
@@ -20,7 +20,7 @@ const LoginForm = () => {
     const auth = new Base64(`${email}:${password}`).encoded;
 
     //sent auth
-    const res = await fetch(fetchUrl, {
+    const res = await fetch(ApiUrl.auth, {
       cache: 'no-store',
       method: 'POST',
       mode: 'cors',

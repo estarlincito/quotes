@@ -1,10 +1,9 @@
 'use client';
-
-import fetchUrl from '@/lib/auth/url';
+import ApiUrl from '@/constants/url';
 
 const LogoutButton = () => {
   const handleLogout = async () => {
-    await fetch(fetchUrl, {
+    await fetch(ApiUrl.auth, {
       method: 'DELETE',
     });
   };
