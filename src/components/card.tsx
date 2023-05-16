@@ -3,6 +3,10 @@ import clsx from 'clsx';
 import { FC } from 'react';
 
 const Card: FC<Quotes> = ({ quote, author, id }) => {
+  const textColors = clsx(
+    'text-text-light-disabled',
+    'dark:text-text-dark-disabled'
+  );
   return (
     <div
       className={clsx(
@@ -12,8 +16,10 @@ const Card: FC<Quotes> = ({ quote, author, id }) => {
       )}
     >
       <blockquote className='font-mono'>&#34;{quote}&#34;</blockquote>
-      <h3 className='font-bold text-small'>-{author}-</h3>
-      <span className='text-mini mt-5 font-mono'>ID: {id}</span>
+      <h3 className={clsx(textColors, 'font-bold text-small')}>-{author}-</h3>
+      <span className={clsx(textColors, 'text-mini mt-5 font-mono')}>
+        ID: {id}
+      </span>
     </div>
   );
 };

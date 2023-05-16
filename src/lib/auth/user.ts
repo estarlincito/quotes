@@ -1,5 +1,6 @@
 import { get } from '@vercel/edge-config';
 import Base64 from '../base64';
+import errorHandling from '../error';
 
 interface User {
   id: number;
@@ -12,7 +13,7 @@ const userDb = async () => {
     const admin = ((await get('admin')) as string) || null;
     return JSON.parse(new Base64(admin!).decoded) as User;
   } catch (error) {
-    throw new Error('check if db config is correct');
+    throw errorHandling('check if db config is correct');
   }
 };
 

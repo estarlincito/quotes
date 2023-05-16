@@ -1,8 +1,10 @@
+import errorHandling from '@/lib/error';
+
 const getJwtSecretKey = () => {
   const secret = process.env.JWT_SECRET_KEY;
 
   if (!secret || secret.length === 0) {
-    throw new Error('the environment variable JW SECRET KEY is not set.');
+    throw errorHandling('the environment variable JW SECRET KEY is not set.');
   }
 
   return secret;

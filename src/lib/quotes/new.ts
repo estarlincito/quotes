@@ -1,6 +1,7 @@
 import { GetQuotes, Quotes } from '@/types/quotes';
 import Base64 from '../base64';
 import date from '../date';
+import { default as errorHandling } from '../error';
 import { octokit } from '../octokit';
 
 const op = {
@@ -23,24 +24,26 @@ const get = async () => {
       quotes: res.data.content,
     } as GetQuotes;
   } catch (error) {
-    console.log(error);
+    throw errorHandling('Error whent try to get quote sha and quotes');
   }
 };
 
 //add
 const add = async (sha: string, content: string) => {
-  const res = await octokit.request(`PUT ${url}`, {
-    ...op,
-    message: date,
-    committer: {
-      name: 'Estarlincito',
-      email: 'estarlincito@github.com',
-    },
-    content,
-    sha,
-  });
-
-  return res;
+  try {
+    await octokit.request(`PUT ${url}`, {
+      ...op,
+      message: JSON.stringify(date),
+      committer: {
+        name: 'Estarlincito',
+        email: 'estarlincito@github.com',
+      },
+      content,
+      sha,
+    });
+  } catch (error) {
+    throw errorHandling('Error whent try to add new quote to github');
+  }
 };
 
 const newQuote = async (req: Request) => {
@@ -48,18 +51,21 @@ const newQuote = async (req: Request) => {
   const getData = await get();
 
   if (!getData) {
-    throw new Error('Error whent try to get quote data');
+    return;
   }
+
   const decodedQuotes = new Base64(getData.quotes).decoded;
   const parseQuotes = JSON.parse(decodedQuotes) as Quotes[];
 
-  const newQuotes = [...parseQuotes, newQ];
+  const newQuotes = [
+    ...parseQuotes,
+    { ...newQ, addedAt: new Date().getTime(), id: parseQuotes.length + 1 },
+  ];
 
   const stringQuotes = JSON.stringify(newQuotes);
   const ecodedQuotes = new Base64(stringQuotes).encoded;
-
-  add(getData.sha, ecodedQuotes);
-  return { success: true };
+  await add(getData.sha, ecodedQuotes);
+  return { success: true, message: 'Quotes has bin add' };
 };
 
 export default newQuote;

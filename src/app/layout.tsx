@@ -1,5 +1,6 @@
 import Footer from '@/components/footer';
 import MainContainer from '@/components/maincontainer';
+import Toaster from '@/lib/toaster';
 import clsx from 'clsx';
 import './globals.css';
 
@@ -14,6 +15,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       >
         <MainContainer>{children}</MainContainer>
         <Footer />
+        <Toaster position='top-right' reverseOrder={false} />
       </body>
     </html>
   );

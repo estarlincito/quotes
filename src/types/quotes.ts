@@ -9,6 +9,6 @@ export interface Quotes {
   author: string;
   url: string;
   tags: string[];
-  addedAt: number;
-  id: number;
+  addedAt?: number;
+  id?: number;
 }

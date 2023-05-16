@@ -1,5 +1,5 @@
-import quotes from '@/assets/quotes.json';
 import ApiUrl from '@/constants/url';
+import ErrorHandling from '@/lib/error';
 import { Quotes } from '@/types/quotes';
 import clsx from 'clsx';
 import { FC } from 'react';
@@ -35,16 +35,26 @@ const FormQuote: FC<FormQuoteProps> = ({}) => {
       author: get('author'),
       url: get('url'),
       tags: formdata.getAll('tags') as string[],
-      addedAt: new Date().getTime(),
-      id: quotes.length + 1,
     };
 
     //sent new quotes
-    await fetch(ApiUrl.quote, {
-      cache: 'no-store',
-      method: 'POST',
-      body: JSON.stringify(newQ),
-    });
+    try {
+      const res = await fetch(ApiUrl.quote, {
+        cache: 'no-store',
+        method: 'POST',
+        body: JSON.stringify(newQ),
+      });
+      console.log(
+        'the problem is you try to doe fetch from server an you don have cession on server check the middleware'
+      );
+      return console.log(res);
+      return await res.json();
+
+      // toast('Your name has been updated successfully.',
+      // {theme: 'dark' type: 'success' autoclose: 2000})
+    } catch (error) {
+      throw ErrorHandling('Error whent try to send new quote to local api');
+    }
   };
   return (
     <form action={handleAction} className={css.form}>
