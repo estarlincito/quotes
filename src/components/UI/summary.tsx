@@ -6,7 +6,7 @@ interface SummaryProps {
 const Summary: FC<SummaryProps> = ({ text }) => {
   return (
     <summary
-      className='my-3'
+      className='my-3 list-none'
       dangerouslySetInnerHTML={{
         __html: text,
       }}

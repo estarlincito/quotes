@@ -10,6 +10,7 @@ const Card: FC<Quotes> = ({ quote, author, id }) => {
   return (
     <div
       className={clsx(
+        'max-w-2xl',
         'flex flex-col gap-y-3',
         'bg-secondary-light dark:bg-secondary-dark',
         'p-5 rounded-lg shadow-sm'

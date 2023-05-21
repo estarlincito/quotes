@@ -9,7 +9,7 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ title, summary }) => {
   return (
-    <header>
+    <header className='mt-5'>
       <Title text={title} />
       <Summary text={summary} />
     </header>
