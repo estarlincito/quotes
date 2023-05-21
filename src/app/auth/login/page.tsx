@@ -1,12 +1,14 @@
 import LoginForm from '@/components/Loginform';
+import Container from '@UI/container';
 import Title from '@UI/title';
 
 const Login = () => {
   return (
-    <div>
+    <Container>
       <Title text='Login' />
+      <br />
       <LoginForm />
-    </div>
+    </Container>
   );
 };
 

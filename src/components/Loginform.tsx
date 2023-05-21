@@ -4,6 +4,10 @@ import errorHandling from '@/lib/error';
 import isDev from '@/lib/isDev';
 
 import { cookies } from 'next/headers';
+import Button from './UI/button';
+import Form from './UI/form';
+import Input from './UI/input';
+import Label from './UI/label';
 
 //Types
 interface Body {
@@ -68,23 +72,14 @@ const LoginForm = () => {
   };
 
   return (
-    <form action={handleSubmit}>
-      <input
-        className='p-5 rounded-sm'
-        name='email'
-        type='email'
-        placeholder='example@get.com'
-        required
-      />
-      <input
-        className='p-5 rounded-sm'
-        name='password'
-        type='password'
-        placeholder='********'
-        required
-      />
-      <button type='submit'>Login</button>
-    </form>
+    <Form action={handleSubmit}>
+      <Label title='Email' />
+      <Input name='email' type='email' placeholder='example@get.com' />
+      <Label title='Password' />
+      <Input name='password' type='password' placeholder='********' />
+
+      <Button title='Login' />
+    </Form>
   );
 };
 

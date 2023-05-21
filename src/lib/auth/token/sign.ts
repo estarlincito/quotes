@@ -7,7 +7,7 @@ const singToken = async (name: string, email: string) => {
     .setProtectedHeader({ alg: 'HS256' })
     .setJti(nanoid())
     .setIssuedAt()
-    .setExpirationTime('50m')
+    .setExpirationTime('1440m')
     .sign(new TextEncoder().encode(getJwtSecretKey()));
 
   return token;

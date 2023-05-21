@@ -2,21 +2,19 @@ import clsx from 'clsx';
 import { FC } from 'react';
 
 interface ButtonProps {
-  children: React.ReactNode;
-  type: 'button' | 'submit';
-  className?: string;
+  title: string;
 }
 
-const Button: FC<ButtonProps> = ({ children, type, className }) => {
+const Button: FC<ButtonProps> = ({ title }) => {
   return (
     <button
-      type={type}
+      type='submit'
       className={clsx(
-        className && className,
+        'mt-5 font-bold',
         'bg-primary-dark rounded-lg text-primary-light p-5'
       )}
     >
-      {children}
+      {title}
     </button>
   );
 };

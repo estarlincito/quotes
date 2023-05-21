@@ -4,6 +4,13 @@ import Toaster from '@/lib/toaster';
 import clsx from 'clsx';
 import './globals.css';
 
+export const metadata = {
+  icons: {
+    icon: 'https://quotes001.vercel.app/favicons/favicon.ico',
+    shortcut: 'https://quotes001.vercel.app/favicons/shortcut-icon.png',
+  },
+};
+
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
