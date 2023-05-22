@@ -1,9 +1,9 @@
 'use client';
-import ApiUrl from '@/constants/url';
+import endpoint from '@/constants/endpoint';
 import ErrorHandling from '@/lib/error';
+import { Body } from '@/types/body';
 import { Quotes } from '@/types/quotes';
 import clsx from 'clsx';
-import { useRef } from 'react';
 import { toast } from 'react-hot-toast';
 import Button from './UI/button';
 import Form from './UI/form';
@@ -11,8 +11,6 @@ import Input from './UI/input';
 import Label from './UI/label';
 
 const QuoteForm = () => {
-  const formRef = useRef<HTMLFormElement>(null);
-
   const handleAction = async (formdata: FormData) => {
     type Name = 'title' | 'quote' | 'author' | 'url' | 'tags';
 
@@ -30,29 +28,27 @@ const QuoteForm = () => {
 
     //sent new quotes
     try {
-      const res = await fetch(ApiUrl.quote, {
+      const res = await fetch(endpoint.quote, {
         cache: 'no-store',
         method: 'POST',
         body: JSON.stringify(newQ),
       });
 
       //reset form value
-      formRef.current?.reset();
 
-      const { success } = await res.json();
-      if (success) {
-        //sent message
-        toast.success('Quote has been added');
+      const { success, message } = (await res.json()) as Body;
+      if (!success) {
+        toast.error(message);
+        return;
       }
-
-      return;
+      toast.success(message);
     } catch (error) {
       throw ErrorHandling('Error whent try to send new quote to local api');
     }
   };
 
   return (
-    <Form action={handleAction} ref={formRef}>
+    <Form action={handleAction}>
       <Label title='Title' />
       <Input name='title' type='text' placeholder='Write quote title' />
 
@@ -74,7 +70,16 @@ const QuoteForm = () => {
       <Input name='url' type='text' placeholder='Write quote url' />
 
       <Label title='Tags' />
-      <select name='tags' id='tags' multiple required>
+      <select
+        name='tags'
+        id='tags'
+        multiple
+        required
+        className={clsx(
+          'p-3 outline-none rounded-md',
+          'text-text-light-primary font-light'
+        )}
+      >
         <option value='education'>education</option>
         <option value='psychological'>psychological</option>
         <option value='tech'>tech</option>

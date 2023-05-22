@@ -1,11 +1,19 @@
+import Container from '@/components/UI/container';
+import Title from '@/components/UI/title';
 import LogoutButton from '@/components/logoutButton';
+
+export const metadata = {
+  title: 'Estarlincito Logout',
+  description: 'unauth session',
+};
 
 const Logout = () => {
   return (
-    <div>
-      <p>Logout page</p>
+    <Container>
+      <Title text='Logout' />
+      <br />
       <LogoutButton />
-    </div>
+    </Container>
   );
 };
 

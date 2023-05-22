@@ -57,6 +57,10 @@ const newQuote = async (req: Request) => {
   const decodedQuotes = new Base64(getData.quotes).decoded;
   const parseQuotes = JSON.parse(decodedQuotes) as Quotes[];
 
+  if (parseQuotes.find((quote) => quote.quote === newQ.quote)) {
+    return { success: false, message: 'This Quotes is duplicate' };
+  }
+
   const newQuotes = [
     ...parseQuotes,
     { ...newQ, addedAt: new Date().getTime(), id: parseQuotes.length + 1 },
@@ -65,7 +69,7 @@ const newQuote = async (req: Request) => {
   const stringQuotes = JSON.stringify(newQuotes);
   const ecodedQuotes = new Base64(stringQuotes).encoded;
   await add(getData.sha, ecodedQuotes);
-  return { success: true, message: 'Quotes has bin add' };
+  return { success: true, message: 'Quotes has bin added' };
 };
 
 export default newQuote;

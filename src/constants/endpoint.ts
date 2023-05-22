@@ -1,6 +1,6 @@
 import isDev from '@/lib/isDev';
 
-class ApiUrl {
+class endpoint {
   static readonly auth =
     isDev === true
       ? 'http://localhost:3000/api/auth'
@@ -12,4 +12,4 @@ class ApiUrl {
       : 'https://quotes001.vercel.app/api/quotes';
 }
 
-export default ApiUrl;
+export default endpoint;
