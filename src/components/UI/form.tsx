@@ -13,7 +13,7 @@ const Form: FC<FormProps> = ({ children, action }) => {
       action={action}
       className={clsx(
         'bg-secondary-light',
-        'flex flex-col gap-y-3 p-5 min-w-[400px]',
+        'flex flex-col gap-y-3 p-5 min-w-[350px] md:min-w-[550px]',
         'rounded-lg'
       )}
     >
