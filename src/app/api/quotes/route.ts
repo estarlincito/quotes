@@ -6,5 +6,12 @@ export const POST = async (req: Request) => {
 };
 
 export const GET = async (req: Request) => {
-  return new Response("it's okay");
+  const data = {
+    title: '',
+    quote: '',
+    author: '',
+    url: '',
+    tags: ['hola'],
+  };
+  return new Response(JSON.stringify(data));
 };

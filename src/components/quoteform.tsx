@@ -1,5 +1,6 @@
 'use client';
 import endpoint from '@/constants/endpoint';
+import { optiontags } from '@/constants/quotes';
 import ErrorHandling from '@/lib/error';
 import { Body } from '@/types/body';
 import { Quotes } from '@/types/quotes';
@@ -35,7 +36,6 @@ const QuoteForm = () => {
       });
 
       //reset form value
-
       const { success, message } = (await res.json()) as Body;
       if (!success) {
         toast.error(message);
@@ -80,13 +80,11 @@ const QuoteForm = () => {
           'text-text-light-primary font-light'
         )}
       >
-        <option value='education'>education</option>
-        <option value='psychological'>psychological</option>
-        <option value='tech'>tech</option>
-        <option value='ui'>ui</option>
-        <option value='work'>work</option>
-        <option value='fantasy'>fantasy</option>
-        <option value='romance'>romance</option>
+        {optiontags.map(({ value, label }, id) => (
+          <option key={id} value={value}>
+            {label}
+          </option>
+        ))}
       </select>
 
       <Button title='Add' />

@@ -70,5 +70,23 @@
     "tags": ["movie", "motivational"],
     "addedAt": 1684211214952,
     "id": 8
+  },
+  {
+    "title": "Ignore Those Who Try to Darken Your Brightness",
+    "quote": "Don’t let the people who make your world beautiful get away",
+    "author": "…",
+    "url": "https://exploringyourmind.com/sometimes-we-have-to-ignore-people-to-live-our-lives/",
+    "tags": ["psychological"],
+    "addedAt": 1684762477817,
+    "id": 9
+  },
+  {
+    "title": "Never go back to someone",
+    "quote": "Never go back to someone who chose someone else over you. Don't do that to yourself",
+    "author": "…",
+    "url": "…",
+    "tags": ["psychological"],
+    "addedAt": 1684958344629,
+    "id": 10
   }
 ]
