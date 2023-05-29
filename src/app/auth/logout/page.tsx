@@ -3,7 +3,7 @@ import Title from '@/components/UI/title';
 import LogoutButton from '@/components/logoutButton';
 
 export const metadata = {
-  title: 'Estarlincito Logout',
+  title: 'Logout',
   description: 'unauth session',
 };
 

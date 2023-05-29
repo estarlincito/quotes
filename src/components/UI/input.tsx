@@ -1,13 +1,14 @@
 import clsx from 'clsx';
-import { FC } from 'react';
+import { ChangeEventHandler, FC } from 'react';
 
 interface InputProps {
   name: string;
   type: 'text' | 'email' | 'password';
   placeholder: string;
+  handleChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-const Input: FC<InputProps> = ({ name, type, placeholder }) => {
+const Input: FC<InputProps> = ({ name, type, placeholder, handleChange }) => {
   return (
     <input
       className={clsx(
@@ -17,6 +18,7 @@ const Input: FC<InputProps> = ({ name, type, placeholder }) => {
       name={name}
       type={type}
       placeholder={placeholder}
+      onChange={handleChange}
       required
     />
   );

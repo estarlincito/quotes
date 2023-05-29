@@ -1,10 +1,11 @@
 'use client';
 import endpoint from '@/constants/endpoint';
-import { optiontags } from '@/constants/quotes';
 import ErrorHandling from '@/lib/error';
+import tags from '@/lib/quotes/tags';
 import { Body } from '@/types/body';
 import { Quotes } from '@/types/quotes';
 import clsx from 'clsx';
+import { ChangeEventHandler, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import Button from './UI/button';
 import Form from './UI/form';
@@ -12,6 +13,23 @@ import Input from './UI/input';
 import Label from './UI/label';
 
 const QuoteForm = () => {
+  const reset = useRef<HTMLFormElement>(null);
+  //tags and author
+  const [change, setChange] = useState<{ [x: string]: string }>({
+    tags: '',
+    author: '',
+  });
+
+  //getting tags and author
+  const handleChange: ChangeEventHandler<HTMLInputElement> = ({
+    target: { value, name },
+  }) => {
+    if (name === 'tags') {
+    }
+    //setChange({ [name]: value });
+  };
+
+  //get input value
   const handleAction = async (formdata: FormData) => {
     type Name = 'title' | 'quote' | 'author' | 'url' | 'tags';
 
@@ -36,6 +54,8 @@ const QuoteForm = () => {
       });
 
       //reset form value
+      reset.current?.reset();
+      //sent message
       const { success, message } = (await res.json()) as Body;
       if (!success) {
         toast.error(message);
@@ -47,8 +67,14 @@ const QuoteForm = () => {
     }
   };
 
+  const handleSelec = (value: string) => {
+    setChange({ tags: value });
+
+    console.log(change);
+  };
+
   return (
-    <Form action={handleAction}>
+    <Form action={handleAction} reset={reset}>
       <Label title='Title' />
       <Input name='title' type='text' placeholder='Write quote title' />
 
@@ -70,7 +96,7 @@ const QuoteForm = () => {
       <Input name='url' type='text' placeholder='Write quote url' />
 
       <Label title='Tags' />
-      <select
+      {/* <select
         name='tags'
         id='tags'
         multiple
@@ -85,7 +111,27 @@ const QuoteForm = () => {
             {label}
           </option>
         ))}
-      </select>
+      </select> */}
+
+      <Input
+        name='tags'
+        type='text'
+        placeholder='Write quote tags'
+        handleChange={handleChange}
+      />
+      <div className='flex flex-col'>
+        {tags().map((item, id) => (
+          <span
+            key={id}
+            className='p-1'
+            onClick={() => {
+              handleSelec(item);
+            }}
+          >
+            {item}
+          </span>
+        ))}
+      </div>
 
       <Button title='Add' />
     </Form>
