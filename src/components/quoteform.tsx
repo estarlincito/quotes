@@ -1,77 +1,16 @@
 'use client';
-import endpoint from '@/constants/endpoint';
-import ErrorHandling from '@/lib/error';
+import useForm from '@/Hooks/useForm';
+import authors from '@/lib/quotes/authors';
 import tags from '@/lib/quotes/tags';
-import { Body } from '@/types/body';
-import { Quotes } from '@/types/quotes';
+import Button from '@UI/button';
+import Form from '@UI/form';
+import Input from '@UI/input';
+import Label from '@UI/label';
 import clsx from 'clsx';
-import { ChangeEventHandler, useRef, useState } from 'react';
-import { toast } from 'react-hot-toast';
-import Button from './UI/button';
-import Form from './UI/form';
-import Input from './UI/input';
-import Label from './UI/label';
+import Options from './options';
 
 const QuoteForm = () => {
-  const reset = useRef<HTMLFormElement>(null);
-  //tags and author
-  const [change, setChange] = useState<{ [x: string]: string }>({
-    tags: '',
-    author: '',
-  });
-
-  //getting tags and author
-  const handleChange: ChangeEventHandler<HTMLInputElement> = ({
-    target: { value, name },
-  }) => {
-    if (name === 'tags') {
-    }
-    //setChange({ [name]: value });
-  };
-
-  //get input value
-  const handleAction = async (formdata: FormData) => {
-    type Name = 'title' | 'quote' | 'author' | 'url' | 'tags';
-
-    const get = (name: Name) => {
-      return formdata.get(name) as string;
-    };
-
-    const newQ: Quotes = {
-      title: get('title'),
-      quote: get('quote'),
-      author: get('author'),
-      url: get('url'),
-      tags: formdata.getAll('tags') as string[],
-    };
-
-    //sent new quotes
-    try {
-      const res = await fetch(endpoint.quote, {
-        cache: 'no-store',
-        method: 'POST',
-        body: JSON.stringify(newQ),
-      });
-
-      //reset form value
-      reset.current?.reset();
-      //sent message
-      const { success, message } = (await res.json()) as Body;
-      if (!success) {
-        toast.error(message);
-        return;
-      }
-      toast.success(message);
-    } catch (error) {
-      throw ErrorHandling('Error whent try to send new quote to local api');
-    }
-  };
-
-  const handleSelec = (value: string) => {
-    setChange({ tags: value });
-
-    console.log(change);
-  };
+  const { reset, values, handleSelec, handleChange, handleAction } = useForm();
 
   return (
     <Form action={handleAction} reset={reset}>
@@ -90,48 +29,40 @@ const QuoteForm = () => {
       />
 
       <Label title='Author' />
-      <Input name='author' type='text' placeholder='Write quote author' />
+      <Input
+        name='author'
+        value={values.author}
+        type='text'
+        placeholder='Write quote author'
+        handleChange={handleChange}
+      />
+
+      <Options
+        items={authors()}
+        handleSelec={handleSelec}
+        values={values}
+        name='author'
+      />
 
       <Label title='Url' />
       <Input name='url' type='text' placeholder='Write quote url' />
 
       <Label title='Tags' />
-      {/* <select
-        name='tags'
-        id='tags'
-        multiple
-        required
-        className={clsx(
-          'p-3 outline-none rounded-md',
-          'text-text-light-primary font-light'
-        )}
-      >
-        {optiontags.map(({ value, label }, id) => (
-          <option key={id} value={value}>
-            {label}
-          </option>
-        ))}
-      </select> */}
 
       <Input
         name='tags'
+        value={values.tags}
         type='text'
-        placeholder='Write quote tags'
+        placeholder='Optional, separated by spaces'
         handleChange={handleChange}
       />
-      <div className='flex flex-col'>
-        {tags().map((item, id) => (
-          <span
-            key={id}
-            className='p-1'
-            onClick={() => {
-              handleSelec(item);
-            }}
-          >
-            {item}
-          </span>
-        ))}
-      </div>
+
+      <Options
+        items={tags()}
+        handleSelec={handleSelec}
+        values={values}
+        name='tags'
+      />
 
       <Button title='Add' />
     </Form>
