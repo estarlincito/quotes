@@ -10,64 +10,39 @@ interface OptionsProps {
 }
 
 const Options: FC<OptionsProps> = ({ items, handleSelec, values, name }) => {
-  //   const [data, setData] = useState(
-  //     items.filter((item) => item.includes(values[name]))
-  //   );
-
-  const data = items.filter(
-    (item) =>
-      !item.includes(
-        name === 'author' ? values[name] : values[name].replaceAll(' ', '')
-      )
-  );
+  const [data, setData] = useState([] as string[]);
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    //if input value change
-    if (values[name].length > 0) {
+    //show options list
+    if (values[name] !== '') {
       setActive(true);
     } else {
       setActive(false);
     }
 
-    //if is author turn off active
-    if (
-      (name === 'author' && data.includes(values[name])) ||
-      (values[name].endsWith(' ') && values[name].length > 4)
-    ) {
-      setActive(false);
-    }
+    //Author
+    if (name === 'author') {
+      //set data
+      if (values.author.startsWith(' ')) {
+        setData(items);
+        if (values.author.length >= 2) {
+          const _data = items.filter((item) =>
+            item.toLowerCase().includes(values.author.toLowerCase())
+          );
+          setData(_data);
+        }
+      }
 
-    //if tags
-    if (name === 'tags' && values[name].endsWith(' ')) {
-      setActive(true);
+      //if author value exit on data
+      if (data.includes(values.author)) {
+        setActive(false);
+      }
+      //if author value is field
+      if (values.author.endsWith(' ') && values.author.length > 2) {
+        setActive(false);
+      }
     }
-    // if (name === 'author') {
-    //   //   const authors = items.filter((item) => item.includes(values[name]));
-    //   //   setData(authors);
-    //   //   //if tags input end with space
-    //   //   if (values[name].endsWith(' ')) {
-    //   //     if (values[name].length > 4) {
-    //   //       setActive(false);
-    //   //     } else {
-    //   //       setActive(true);
-    //   //     }
-    //   //   }
-    //   //   //if author input have some authors value
-    //   //   if (values[name] !== ' ' || authors.includes(values[name])) {
-    //   //     setActive(false);
-    //   //   }
-    // }
-    // if (name === 'tags') {
-    //   //   const tags = items.filter((item) =>
-    //   //     item.includes(values[name].replace(' ', ''))
-    //   //   );
-    //   //   setData(tags);
-    //   //   //if author input have some authors value
-    //   //   if (tags.includes(values[name])) {
-    //   //     setActive(false);
-    //   //   }
-    // }
   }, [data, items, name, values]);
 
   return active === false ? null : (
