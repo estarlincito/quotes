@@ -19,7 +19,7 @@ const useForm = () => {
   //select options
   const handleSelec = (value: string, name: Name) => {
     if (name === 'tags') {
-      setValues({ ...values, tags: (values.tags += value) });
+      setValues({ ...values, tags: (values.tags += value + ' ') });
     }
 
     if (name === 'author') {

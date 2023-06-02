@@ -14,26 +14,18 @@ const Options: FC<OptionsProps> = ({ items, handleSelec, values, name }) => {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    //show options list
-    if (values[name] !== '') {
-      setActive(true);
-    } else {
-      setActive(false);
-    }
-
     //Author
     if (name === 'author') {
-      //set data
-      if (values.author.startsWith(' ')) {
-        setData(items);
-        if (values.author.length >= 2) {
-          const _data = items.filter((item) =>
-            item.toLowerCase().includes(values.author.toLowerCase())
-          );
-          setData(_data);
-        }
+      const authors = items.filter((item) =>
+        item.toLowerCase().includes(values.author.toLowerCase())
+      );
+      //show options list
+      if (values.author !== '') {
+        setData(authors);
+        setActive(true);
+      } else {
+        setActive(false);
       }
-
       //if author value exit on data
       if (data.includes(values.author)) {
         setActive(false);
@@ -43,7 +35,28 @@ const Options: FC<OptionsProps> = ({ items, handleSelec, values, name }) => {
         setActive(false);
       }
     }
-  }, [data, items, name, values]);
+    //Tags
+    if (name === 'tags') {
+      const inputV = values.tags.split(' ');
+
+      if (items.some((elem) => inputV.includes(elem))) {
+      } else {
+      }
+
+      //neet filter and hide if value is field
+      const tags = items.filter((item) =>
+        item.includes(values.author.toLowerCase())
+      );
+      //show options list
+      if (values.tags !== '') {
+        setData(tags);
+        setActive(true);
+      } else {
+        setActive(false);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name, values]);
 
   return active === false ? null : (
     <ul
