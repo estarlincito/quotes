@@ -4,7 +4,13 @@ import removeD from './removed';
 const authors = () => {
   //get all authors
   const _authors = quotes.map((quote) => quote.author);
-  return removeD(_authors);
+  const authors = removeD(_authors);
+
+  const data = authors.map((items) => {
+    return { value: items, label: items };
+  });
+
+  return data;
 };
 
 export default authors;

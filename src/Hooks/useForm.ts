@@ -3,36 +3,11 @@ import endpoint from '@/constants/endpoint';
 import errorHandling from '@/lib/error';
 import { Body } from '@/types/body';
 import { Quotes } from '@/types/quotes';
-import { Name, Values } from '@/types/values';
-import { ChangeEventHandler, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { toast } from 'react-hot-toast';
 
 const useForm = () => {
   const reset = useRef<HTMLFormElement>(null);
-
-  //get tags and author input value
-  const [values, setValues] = useState<Values>({
-    tags: '',
-    author: '',
-  });
-
-  //select options
-  const handleSelec = (value: string, name: Name) => {
-    if (name === 'tags') {
-      setValues({ ...values, tags: (values.tags += value + ' ') });
-    }
-
-    if (name === 'author') {
-      setValues({ ...values, author: value });
-    }
-  };
-
-  //getting input tags and author values
-  const handleChange: ChangeEventHandler<HTMLInputElement> = ({
-    target: { value, name },
-  }) => {
-    setValues({ ...values, [name as Name]: value });
-  };
 
   //get input value
   const handleAction = async (formdata: FormData) => {
@@ -74,9 +49,6 @@ const useForm = () => {
 
   return {
     reset,
-    values,
-    handleSelec,
-    handleChange,
     handleAction,
   } as const;
 };

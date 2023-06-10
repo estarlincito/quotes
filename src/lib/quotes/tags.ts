@@ -4,7 +4,14 @@ import removeD from './removed';
 const tags = () => {
   //get all tags
   const _tags = quotes.flatMap((quote) => quote.tags);
-  return removeD(_tags);
+
+  const tags = removeD(_tags);
+
+  const data = tags.map((items) => {
+    return { value: items, label: items };
+  });
+
+  return data;
 };
 
 export default tags;
