@@ -31,7 +31,7 @@ const auth = async (req: Request) => {
   };
 
   //check if store user and current user is true
-  const user = await userDb();
+  const user = userDb();
   const email = await compare(credentials(0), user.email);
   const password = await compare(credentials(1), user.password);
 

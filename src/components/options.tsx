@@ -35,11 +35,15 @@ const Options: FC<OptionsProps> = ({ items, handleSelec, values, name }) => {
         setActive(false);
       }
     }
+
     //Tags
     if (name === 'tags') {
       const inputV = values.tags.split(' ');
 
       if (items.some((elem) => inputV.includes(elem))) {
+        const newTags = data.filter((item) => !inputV.includes(item));
+        console.log(newTags);
+        setData(newTags);
       } else {
       }
 
