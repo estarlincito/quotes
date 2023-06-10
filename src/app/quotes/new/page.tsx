@@ -1,4 +1,4 @@
-import QuoteForm from '@/components/quoteform';
+import QuotesForm from '@/components/quotesform';
 import Container from '@UI/container';
 import Header from '@UI/header';
 
@@ -13,7 +13,7 @@ const NewPage = () => {
     <Container>
       <Header title={title} summary='Here you can create new Quotes' />
       <br />
-      <QuoteForm />
+      <QuotesForm />
     </Container>
   );
 };

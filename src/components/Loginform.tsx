@@ -3,11 +3,11 @@ import endpoint from '@/constants/endpoint';
 import Base64 from '@/lib/base64';
 import errorHandling from '@/lib/error';
 import { Body } from '@/types/body';
+import Button from '@UI/button';
+import Form from '@UI/form';
+import Input from '@UI/input';
+import Label from '@UI/label';
 import { toast } from 'react-hot-toast';
-import Button from './UI/button';
-import Form from './UI/form';
-import Input from './UI/input';
-import Label from './UI/label';
 
 const LoginForm = () => {
   const handleSubmit = async (formData: FormData) => {

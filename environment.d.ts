@@ -4,5 +4,6 @@ declare namespace NodeJS {
     readonly GITHUB_TOKEN: string;
     readonly JWT_SECRET_KEY: string;
     readonly EDGE_CONFIG: string;
+    readonly ADMIN: string;
   }
 }

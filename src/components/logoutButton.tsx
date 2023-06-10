@@ -2,9 +2,9 @@
 import endpoint from '@/constants/endpoint';
 import errorHandling from '@/lib/error';
 import { Body } from '@/types/body';
+import Button from '@UI/button';
+import Form from '@UI/form';
 import { toast } from 'react-hot-toast';
-import Button from './UI/button';
-import Form from './UI/form';
 
 const LogoutButton = () => {
   const handleLogout = async () => {
