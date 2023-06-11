@@ -3,7 +3,7 @@
     "title": "Russian Roulette (Helena Hawthorn Series, #1)",
     "quote": "This day keeps on getting better and better",
     "author": "May Freighter",
-    "url": "...",
+    "url": "#",
     "tags": ["romance", "fantasy"],
     "addedAt": 1683656847182,
     "id": 1
@@ -12,7 +12,7 @@
     "title": "Little Witch Academia",
     "quote": "Never forget, believe in yourself that's your magic",
     "author": "Sucy Manbavaran",
-    "url": "...",
+    "url": "#",
     "tags": ["romance", "fantasy"],
     "addedAt": 1683699985056,
     "id": 2
@@ -75,7 +75,7 @@
     "title": "Don't regret the past",
     "quote": "Don't regret the past, just learn from it",
     "author": "Being Better",
-    "url": "...",
+    "url": "#",
     "tags": ["motivational"],
     "addedAt": 1685039195607,
     "id": 9
@@ -181,7 +181,7 @@
   },
   {
     "title": "Never Tell",
-    "quote": "Never Tell Everyone Everything.",
+    "quote": "Never Tell Everyone Everything",
     "author": "Poison King",
     "url": "https://www.facebook.com/photo/?fbid=807593494266686&set=a.192214845804557",
     "tags": ["motivational", "psychological"],
@@ -190,7 +190,7 @@
   },
   {
     "title": "DON'T BE AFRAID",
-    "quote": "DON'T BE AFRAID TO FAIL, BE AFRAID NOT TO TRY.",
+    "quote": "DON'T BE AFRAID TO FAIL, BE AFRAID NOT TO TRY",
     "author": "Deep MotivationX",
     "url": "https://www.facebook.com/photo/?fbid=3501483963506901&set=gm.937573740831429&idorvanity=280793906509419",
     "tags": ["motivational", "psychological"],
@@ -199,7 +199,7 @@
   },
   {
     "title": "Success takes time",
-    "quote": "Success takes time. Stay focused. Be patient.",
+    "quote": "Success takes time. Stay focused. Be patient",
     "author": "Positive Life",
     "url": "https://www.facebook.com/photo/?fbid=238517178796183&set=a.117944347520134",
     "tags": ["motivational", "psychological"],
@@ -217,7 +217,7 @@
   },
   {
     "title": "There is no elevator",
-    "quote": "There is no elevator to success, you have to take the stairs.",
+    "quote": "There is no elevator to success, you have to take the stairs",
     "author": "Emerald Aile",
     "url": "https://www.facebook.com/photo/?fbid=774717670715206&set=gm.1514298129397238&idorvanity=832797380880653",
     "tags": ["motivational", "psychological"],
@@ -241,5 +241,14 @@
     "tags": ["motivational", "psychological"],
     "addedAt": 1686442027174,
     "id": 27
+  },
+  {
+    "title": "Your struggle",
+    "quote": "Your struggle is part of your story",
+    "author": "Being Better",
+    "url": "https://www.facebook.com/photo/?fbid=774848831314681&set=a.492565786209655",
+    "tags": ["motivational", "psychological"],
+    "addedAt": 1686442488863,
+    "id": 28
   }
 ]
