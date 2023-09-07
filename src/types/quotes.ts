@@ -10,4 +10,5 @@ export interface Quotes {
   url: string;
   tags: string[];
   addedAt?: number;
+  id?: number;
 }
