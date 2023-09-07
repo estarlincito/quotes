@@ -1,10 +1,9 @@
 import quotes from '@/assets/quotes.json';
-import ButtonAdd from '@/components/buttonadd';
 import Card from '@/components/card';
 import Container from '@UI/container';
 import Header from '@UI/header';
+import { Box, Button, Flex } from '@radix-ui/themes';
 import Link from 'next/link';
-import useSession from './Hooks/useSession';
 
 export const metadata = {
   title: 'Estarlincito Quotes',
@@ -12,7 +11,6 @@ export const metadata = {
 };
 
 const HomePage = async () => {
-  const { isLogin } = await useSession();
   const random = Math.floor(Math.random() * quotes.length);
 
   return (
@@ -22,17 +20,18 @@ const HomePage = async () => {
         summary='Here you can find amazing quotes to inspire your day, good luck!'
       />
 
-      <div className='my-8'>
+      <Box my='8'>
         <Card {...quotes[random]} />
-      </div>
+      </Box>
 
-      <div>
-        <Link href='/quotes' className='font-bold text-primary-dark'>
-          View more Quotes
+      <Flex direction='column' gap='3'>
+        <Link href='/quotes'>
+          <Button variant='solid'>View more Quotes</Button>
         </Link>
-      </div>
-
-      {isLogin === null ? null : <ButtonAdd />}
+        <Link href='/quotes/new'>
+          <Button variant='surface'>Add Quote</Button>
+        </Link>
+      </Flex>
     </Container>
   );
 };

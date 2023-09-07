@@ -2,6 +2,7 @@ import quotes from '@/assets/quotes.json';
 import Card from '@/components/card';
 import Container from '@UI/container';
 import Header from '@UI/header';
+import { Box, Button, Flex, Text } from '@radix-ui/themes';
 import Link from 'next/link';
 
 export const metadata = {
@@ -14,19 +15,19 @@ const QuotesPage = () => {
     <Container>
       <Header title='All <b>Quotes</b>' summary='Check my quotes list!' />
 
-      <ul className='my-8 flex flex-col gap-5'>
+      <Flex my='5' direction='column' gap='5'>
         {quotes.map((quote, index) => (
-          <li key={index}>
+          <Text as='span' key={index}>
             <Card {...quote} />
-          </li>
+          </Text>
         ))}
-      </ul>
+      </Flex>
 
-      <div>
-        <Link href='/' target='_self' className='font-bold text-primary-dark'>
-          Back to Home
+      <Box>
+        <Link href='/' target='_self'>
+          <Button variant='solid'>Back to Home</Button>
         </Link>
-      </div>
+      </Box>
     </Container>
   );
 };

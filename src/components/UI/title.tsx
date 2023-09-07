@@ -1,3 +1,4 @@
+import { Heading } from '@radix-ui/themes';
 import { FC } from 'react';
 
 interface TitleProps {
@@ -5,7 +6,8 @@ interface TitleProps {
 }
 const Title: FC<TitleProps> = ({ text }) => {
   return (
-    <h1
+    <Heading
+      size='9'
       dangerouslySetInnerHTML={{
         __html: text,
       }}

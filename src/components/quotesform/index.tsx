@@ -1,7 +1,8 @@
 'use client';
 import useForm from '@/Hooks/useForm';
-import Button from '@UI/button';
+
 import Form from '@UI/form';
+import { Button } from '@radix-ui/themes';
 import AuthorsSelec from './authors-select';
 import QuoteInput from './quote-input';
 import TagsSelec from './tags-select';
@@ -18,7 +19,7 @@ const QuotesForm = () => {
       <AuthorsSelec />
       <UrlInput />
       <TagsSelec />
-      <Button title='Add' />
+      <Button>Add</Button>
     </Form>
   );
 };

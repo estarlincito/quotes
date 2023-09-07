@@ -63,13 +63,13 @@ const newQuote = async (req: Request) => {
 
   const newQuotes = [
     ...parseQuotes,
-    { ...newQ, addedAt: new Date().getTime(), id: parseQuotes.length + 1 },
+    { ...newQ, addedAt: new Date().getTime() },
   ];
 
   const stringQuotes = JSON.stringify(newQuotes);
   const ecodedQuotes = new Base64(stringQuotes).encoded;
   await add(getData.sha, ecodedQuotes);
-  return { success: true, message: 'Quotes has bin added' };
+  return { success: true, message: 'Quote has bin added' };
 };
 
 export default newQuote;

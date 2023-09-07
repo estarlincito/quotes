@@ -1,3 +1,4 @@
+import { Blockquote } from '@radix-ui/themes';
 import { FC } from 'react';
 
 interface SummaryProps {
@@ -5,8 +6,8 @@ interface SummaryProps {
 }
 const Summary: FC<SummaryProps> = ({ text }) => {
   return (
-    <summary
-      className='my-3 list-none'
+    <Blockquote
+      my='5'
       dangerouslySetInnerHTML={{
         __html: text,
       }}

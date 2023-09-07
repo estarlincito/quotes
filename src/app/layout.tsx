@@ -1,7 +1,7 @@
 import Footer from '@/components/footer';
-import MainContainer from '@/components/maincontainer';
 import Toaster from '@/lib/toaster';
-import clsx from 'clsx';
+import { Container, Theme } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
 import './globals.css';
 
 export const metadata = {
@@ -14,15 +14,14 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
-      <body
-        className={clsx(
-          'bg-white dark:bg-black',
-          'text-text-light-primary dark:text-text-dark-primary'
-        )}
-      >
-        <MainContainer>{children}</MainContainer>
-        <Footer />
-        <Toaster position='top-right' reverseOrder={false} />
+      <body>
+        <Theme appearance='light'>
+          <Container p='5'>
+            {children}
+            <Footer />
+          </Container>
+          <Toaster position='top-right' reverseOrder={false} />
+        </Theme>
       </body>
     </html>
   );
