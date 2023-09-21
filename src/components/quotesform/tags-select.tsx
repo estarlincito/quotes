@@ -5,7 +5,7 @@ import CreatableSelect from 'react-select/creatable';
 
 const animatedComponents = makeAnimated();
 
-const TagsSelec = () => {
+const TagsSelec = async () => {
   return (
     <>
       <Label title='Tags' />
@@ -17,7 +17,7 @@ const TagsSelec = () => {
         isMulti
         isClearable
         name='tags'
-        options={tags()}
+        options={await tags()}
         required
       />
     </>

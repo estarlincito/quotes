@@ -1,8 +1,8 @@
-import quotes from '@assets/quotes.json';
+import loadQuotes from '../loadQuotes';
 import removeD from './removed';
 
-const tags = () => {
-  //get all tags
+const tags = async () => {
+  const quotes = await loadQuotes();
   const _tags = quotes.flatMap((quote) => quote.tags);
 
   const tags = removeD(_tags);

@@ -1,5 +1,5 @@
-import quotes from '@/assets/quotes.json';
 import Card from '@/components/card';
+import loadQuotes from '@/lib/loadQuotes';
 import Container from '@UI/container';
 import Header from '@UI/header';
 import { Box, Button, Flex } from '@radix-ui/themes';
@@ -11,6 +11,7 @@ export const metadata = {
 };
 
 const HomePage = async () => {
+  const quotes = await loadQuotes();
   const random = Math.floor(Math.random() * quotes.length);
 
   return (

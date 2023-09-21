@@ -2,7 +2,7 @@ import authors from '@/lib/quotes/authors';
 import Label from '@UI/label';
 import CreatableSelect from 'react-select/creatable';
 
-const AuthorsSelec = () => {
+const AuthorsSelec = async () => {
   return (
     <>
       <Label title='Author' />
@@ -10,7 +10,7 @@ const AuthorsSelec = () => {
         placeholder='Write or select author'
         instanceId={1}
         name='author'
-        options={authors()}
+        options={await authors()}
         required
       />
     </>
