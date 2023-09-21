@@ -3,7 +3,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
     serverActions: true,
-    serverComponentsExternalPackages: ['bcrypt', 'octokit'],
+    serverComponentsExternalPackages: ['octokit'],
   },
 };
 

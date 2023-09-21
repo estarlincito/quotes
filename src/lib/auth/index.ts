@@ -1,6 +1,6 @@
 import Base64 from '@/lib/base64';
 import isDev from '@/lib/isDev';
-import { compare } from 'bcrypt';
+import { compare } from 'bcryptjs';
 import { serialize } from 'cookie';
 import singToken from './token/sign';
 import userDb from './user';

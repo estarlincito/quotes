@@ -1,5 +1,5 @@
-import quotes from '@/assets/quotes.json';
 import Card from '@/components/card';
+import loadQuotes from '@/lib/loadQuotes';
 import Container from '@UI/container';
 import Header from '@UI/header';
 import { Box, Button, Flex, Text } from '@radix-ui/themes';
@@ -10,7 +10,9 @@ export const metadata = {
   description: 'Check my quotes list!',
 };
 
-const QuotesPage = () => {
+const QuotesPage = async () => {
+  const quotes = await loadQuotes();
+
   return (
     <Container>
       <Header title='All <b>Quotes</b>' summary='Check my quotes list!' />

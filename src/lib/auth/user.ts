@@ -7,15 +7,6 @@ interface User {
   password: string;
 }
 
-// const userDb = async () => {
-//   try {
-//     const admin = ((await get('admin')) as string) || null;
-//     return JSON.parse(new Base64(admin!).decoded) as User;
-//   } catch (error) {
-//     throw errorHandling('check if db config is correct');
-//   }
-// };
-
 const userDb = () => {
   try {
     const admin = process.env.ADMIN;
