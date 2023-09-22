@@ -5,19 +5,19 @@ import { default as errorHandling } from '../error';
 import { octokit } from '../octokit';
 
 const op = {
-  owner: 'Estarlincito',
-  repo: 'quotes001',
-  path: '/src/assets/quotes.json',
+  owner: 'estarlincito',
+  repo: 'idb',
+  path: 'data_en.json',
   headers: {
     'X-GitHub-Api-Version': '2022-11-28',
   },
 };
-const url = `/repos/estarlincito/quotes/contents${op.path}`;
 
-//get quotes and sha
+const url = `/repos/estarlincito/${op.repo}/contents/${op.path}`;
+
 const get = async () => {
   try {
-    const res = await octokit.request(`GET ${url}`, op);
+    const res = await octokit.request(`GET ${url}`, { ...op, ref: 'quotes' });
 
     return {
       sha: res.data.sha,
@@ -28,7 +28,6 @@ const get = async () => {
   }
 };
 
-//add
 const add = async (sha: string, content: string) => {
   try {
     await octokit.request(`PUT ${url}`, {
@@ -39,6 +38,7 @@ const add = async (sha: string, content: string) => {
         email: 'estarlincito@github.com',
       },
       content,
+      branch: 'quotes',
       sha,
     });
   } catch (error) {

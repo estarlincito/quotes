@@ -2,7 +2,8 @@
   "git": {
     "deploymentEnabled": {
       "development": false,
-      "main": true
+      "main": true,
+      "quotes": true
     }
   }
 }
