@@ -15,7 +15,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
       <body>
-        <Theme appearance='light'>
+        <Theme appearance='dark'>
           <Container p='5'>
             {children}
             <Footer />
